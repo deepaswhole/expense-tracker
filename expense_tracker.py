@@ -1,3 +1,4 @@
+import json
 print("Welcome to the Expense tracker!")
 expenses = []
 
@@ -23,3 +24,17 @@ def search_expenses(category):
 def calculate_total():
     total = sum(expense['amount'] for expense in expenses)
     print(f"Total expenses: ${total}")
+
+def save_expense():
+    with open("expenses.json", "w") as file:
+        json.dump(expenses, file)
+    print("Expenses saved to file!")
+
+def load_expense():
+    global expenses
+    try:
+        with open("expenses.json", "r") as file:
+            expenses = json.load(file)
+        print("Expenses loaded from file")
+    except FileNotFoundError:
+        print("No saved expenses found")
