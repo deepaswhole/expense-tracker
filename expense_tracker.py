@@ -19,4 +19,7 @@ def search_expenses(category):
             print(f"Category: {expense['category']}, Amount: ${expense["amount"]}, Description: {expense['description']}")
         else:
             print(f"No expenses found in category: {category}")
-            
+
+def calculate_total():
+    total = sum(expense['amount'] for expense in expenses)
+    print(f"Total expenses: ${total}")
