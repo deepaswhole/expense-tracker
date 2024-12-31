@@ -2,10 +2,6 @@ import json
 print("Welcome to the Expense tracker!")
 expenses = []
 
-def add_expense(category, amount, description):
-    expenses.append({"category": category, "amount": amount, "description": description})
-    print(f"Expense added: {category} - ${amount} : {description}")
-
 def view_expenses():
     if not expenses:
         print("No expenses recorded")
@@ -38,3 +34,16 @@ def load_expense():
         print("Expenses loaded from file")
     except FileNotFoundError:
         print("No saved expenses found")
+
+
+def add_expense(category, amount, description):
+    try:
+        amount = float(amount)
+        if amount < 0:
+            raise ValueError("Amount must be positive.")
+        expenses.append({"category": category, "amount": amount, "description": description})
+        print(f"Expense added: {category} - ${amount}: {description}")
+    except ValueError as e:
+        print(f"Invalid amount: {e}")
+
+
