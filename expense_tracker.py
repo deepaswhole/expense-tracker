@@ -46,4 +46,6 @@ def add_expense(category, amount, description):
     except ValueError as e:
         print(f"Invalid amount: {e}")
 
-
+def sum_expense():
+    total = sum(expense['amount'] for expense in expenses)
+    print(f"total amount = ${total}")
